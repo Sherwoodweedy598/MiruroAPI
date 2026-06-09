@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiruroAPI - Free Anime Streaming API</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2326A3D6'/%3E%3Cstop offset='100%25' style='stop-color:%237B2FF7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23g)'/%3E%3Ctext x='50' y='62' text-anchor='middle' fill='white' font-family='Arial Black' font-size='32' font-weight='bold'%3EM%3C/text%3E%3C/svg%3E">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0b1622; color: #e1e7ef; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .container { max-width: 800px; padding: 40px; text-align: center; }
+    h1 { font-size: 2.5em; background: linear-gradient(135deg, #26A3D6, #7B2FF7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+    p { color: #a0b1c5; font-size: 1.1em; margin-bottom: 24px; line-height: 1.6; }
+    .badge { display: inline-block; background: rgba(38,163,214,0.15); color: #26A3D6; padding: 6px 16px; border-radius: 20px; font-size: 0.9em; margin-bottom: 24px; border: 1px solid rgba(38,163,214,0.3); }
+    .endpoints { text-align: left; background: rgba(20,32,48,0.8); border-radius: 12px; padding: 24px; margin-top: 24px; border: 1px solid rgba(255,255,255,0.05); }
+    .endpoints h3 { color: #26A3D6; margin-bottom: 12px; }
+    .endpoint { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-family: monospace; font-size: 0.9em; }
+    .endpoint:last-child { border-bottom: none; }
+    .method { color: #10b981; font-weight: bold; }
+    a { color: #26A3D6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">v1.0.0</div>
+    <h1>MiruroAPI</h1>
+    <p>Free RESTful API for anime streaming data. Powered by <a href="https://anilist.co">AniList GraphQL</a> and <a href="https://miruro.to">Miruro</a> streaming providers.</p>
+    <div class="endpoints">
+      <h3>Endpoints</h3>
+      <div class="endpoint"><span class="method">GET</span> /api/search?query=naruto</div>
+      <div class="endpoint"><span class="method">GET</span> /api/trending</div>
+      <div class="endpoint"><span class="method">GET</span> /api/popular</div>
+      <div class="endpoint"><span class="method">GET</span> /api/upcoming</div>
+      <div class="endpoint"><span class="method">GET</span> /api/recent</div>
+      <div class="endpoint"><span class="method">GET</span> /api/spotlight</div>
+      <div class="endpoint"><span class="method">GET</span> /api/schedule</div>
+      <div class="endpoint"><span class="method">GET</span> /api/filter?genre=Action</div>
+      <div class="endpoint"><span class="method">GET</span> /api/info/:id</div>
+      <div class="endpoint"><span class="method">GET</span> /api/episodes/:id</div>
+      <div class="endpoint"><span class="method">GET</span> /api/watch/:provider/:id/:category/:slug</div>
+      <div class="endpoint"><span class="method">GET</span> /api/health</div>
+    </div>
+  </div>
+</body>
+</html>
