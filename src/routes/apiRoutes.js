@@ -36,7 +36,7 @@ const { getCached, setCache } = require("../helpers/cache");
  * @param {function} jsonError - Standardized error response wrapper
  * @returns {express.Router} Configured router
  */
-const createApiRoutes = (app, jsonResponse, jsonError) => {
+const createApiRoutes = (jsonResponse, jsonError) => {
   const router = express.Router();
 
   // ══════════════════════════════════════════════════════════════
