@@ -92,7 +92,14 @@ async function fetchRawEpisodes(anilistId) {
 
 async function getEpisodes(anilistId) {
   const data = await fetchRawEpisodes(anilistId);
-  return injectSourceSlugs(data, anilistId);
+  const result = injectSourceSlugs(data, anilistId);
+  // Ensure mappings field is present (like Walter's API)
+  if (!result.mappings) {
+    result.mappings = { anilistId };
+    if (result.malId) result.mappings.malId = result.malId;
+    if (result.kitsuId) result.mappings.kitsuId = result.kitsuId;
+  }
+  return result;
 }
 
 async function getSources(episodeId, provider, anilistId, category = "sub") {

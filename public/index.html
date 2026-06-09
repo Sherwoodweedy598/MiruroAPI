@@ -3,43 +3,203 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiruroAPI - Free Anime Streaming API</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2326A3D6'/%3E%3Cstop offset='100%25' style='stop-color:%237B2FF7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23g)'/%3E%3Ctext x='50' y='62' text-anchor='middle' fill='white' font-family='Arial Black' font-size='32' font-weight='bold'%3EM%3C/text%3E%3C/svg%3E">
+  <title>MiruroAPI — Free Anime Streaming API</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2338bdf8'/%3E%3Cstop offset='100%25' style='stop-color:%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23g)'/%3E%3Ctext x='50' y='62' text-anchor='middle' fill='white' font-family='Arial Black' font-size='32' font-weight='bold'%3EM%3C/text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0b1622; color: #e1e7ef; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .container { max-width: 800px; padding: 40px; text-align: center; }
-    h1 { font-size: 2.5em; background: linear-gradient(135deg, #26A3D6, #7B2FF7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
-    p { color: #a0b1c5; font-size: 1.1em; margin-bottom: 24px; line-height: 1.6; }
-    .badge { display: inline-block; background: rgba(38,163,214,0.15); color: #26A3D6; padding: 6px 16px; border-radius: 20px; font-size: 0.9em; margin-bottom: 24px; border: 1px solid rgba(38,163,214,0.3); }
-    .endpoints { text-align: left; background: rgba(20,32,48,0.8); border-radius: 12px; padding: 24px; margin-top: 24px; border: 1px solid rgba(255,255,255,0.05); }
-    .endpoints h3 { color: #26A3D6; margin-bottom: 12px; }
-    .endpoint { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-family: monospace; font-size: 0.9em; }
-    .endpoint:last-child { border-bottom: none; }
-    .method { color: #10b981; font-weight: bold; }
-    a { color: #26A3D6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    body { font-family: 'Outfit', sans-serif; background: radial-gradient(circle at top, #0f172a, #020617); color: #e2e8f0; min-height: 100vh; padding: 50px 20px; }
+    .container { max-width: 960px; margin: 0 auto; background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .header { text-align: center; margin-bottom: 50px; }
+    .logo { width: 120px; border-radius: 20px; box-shadow: 0 0 30px rgba(56, 189, 248, 0.3); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 25px; }
+    h1 { font-size: 3em; font-weight: 700; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; color: transparent; margin-bottom: 10px; }
+    .subtitle { color: #94a3b8; font-size: 1.1em; font-weight: 300; }
+    .version { display: inline-block; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 4px 14px; border-radius: 20px; font-size: 0.85em; margin-top: 10px; border: 1px solid rgba(56, 189, 248, 0.2); }
+    .section-title { font-size: 1.3em; font-weight: 700; color: #818cf8; margin: 35px 0 15px; border-left: 3px solid #818cf8; padding-left: 12px; }
+    .endpoint { background: rgba(15, 23, 42, 0.8); border-left: 4px solid #38bdf8; padding: 20px 25px; margin: 12px 0; border-radius: 0 16px 16px 0; border: 1px solid rgba(255,255,255,0.02); transition: all 0.3s ease; }
+    .endpoint:hover { transform: translateX(5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); border-left-color: #818cf8; background: rgba(30, 41, 59, 0.9); }
+    .method { color: #10b981; font-weight: 700; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 6px; font-size: 0.9em; margin-right: 10px; }
+    .url { font-family: monospace; color: #cbd5e1; font-size: 1.05em; }
+    .desc { color: #94a3b8; font-size: 0.95em; margin-top: 8px; font-weight: 300; line-height: 1.5; }
+    .badge { display: inline-block; font-size: 0.7em; padding: 2px 8px; border-radius: 6px; margin-left: 8px; font-weight: 500; vertical-align: middle; }
+    .badge-new { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .step-num { display: inline-block; background: rgba(56, 189, 248, 0.15); color: #38bdf8; width: 26px; height: 26px; text-align: center; line-height: 26px; border-radius: 50%; font-size: 0.85em; font-weight: 700; margin-right: 8px; }
+    .note { background: rgba(250, 204, 21, 0.08); border: 1px solid rgba(250, 204, 21, 0.15); border-radius: 10px; padding: 14px 18px; margin-top: 12px; font-size: 0.88em; color: #fbbf24; line-height: 1.5; }
+    .note b { color: #fde68a; }
+    pre.snippet { background: #020617; padding: 14px; border-radius: 10px; margin-top: 12px; color: #a5b4fc; font-family: monospace; font-size: 0.82em; border: 1px solid rgba(255,255,255,0.05); overflow-x: auto; line-height: 1.5; }
+    table.param-table { width: 100%; margin-top: 12px; border-collapse: collapse; font-size: 0.85em; }
+    table.param-table th { text-align: left; color: #818cf8; font-weight: 500; padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    table.param-table td { padding: 6px 10px; color: #94a3b8; border-bottom: 1px solid rgba(255,255,255,0.03); }
+    table.param-table td:first-child { color: #a5b4fc; font-family: monospace; white-space: nowrap; }
+    .footer { text-align: center; margin-top: 50px; color: #475569; font-size: 0.9em; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
+    a { color: #38bdf8; text-decoration: none; font-weight: 500; }
+    a:hover { color: #818cf8; text-shadow: 0 0 10px rgba(129, 140, 248, 0.5); }
+    .try-btn { display: inline-block; background: rgba(56, 189, 248, 0.1); color: #38bdf8; padding: 6px 14px; border-radius: 8px; font-size: 0.85em; margin-top: 10px; border: 1px solid rgba(56, 189, 248, 0.2); transition: all 0.3s; }
+    .try-btn:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-1px); }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="badge">v1.0.0</div>
-    <h1>MiruroAPI</h1>
-    <p>Free RESTful API for anime streaming data. Powered by <a href="https://anilist.co">AniList GraphQL</a> and <a href="https://miruro.to">Miruro</a> streaming providers.</p>
-    <div class="endpoints">
-      <h3>Endpoints</h3>
-      <div class="endpoint"><span class="method">GET</span> /api/search?query=naruto</div>
-      <div class="endpoint"><span class="method">GET</span> /api/trending</div>
-      <div class="endpoint"><span class="method">GET</span> /api/popular</div>
-      <div class="endpoint"><span class="method">GET</span> /api/upcoming</div>
-      <div class="endpoint"><span class="method">GET</span> /api/recent</div>
-      <div class="endpoint"><span class="method">GET</span> /api/spotlight</div>
-      <div class="endpoint"><span class="method">GET</span> /api/schedule</div>
-      <div class="endpoint"><span class="method">GET</span> /api/filter?genre=Action</div>
-      <div class="endpoint"><span class="method">GET</span> /api/info/:id</div>
-      <div class="endpoint"><span class="method">GET</span> /api/episodes/:id</div>
-      <div class="endpoint"><span class="method">GET</span> /api/watch/:provider/:id/:category/:slug</div>
-      <div class="endpoint"><span class="method">GET</span> /api/health</div>
+    <div class="header">
+      <svg class="logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#38bdf8"/>
+            <stop offset="100%" style="stop-color:#818cf8"/>
+          </linearGradient>
+        </defs>
+        <rect width="120" height="120" rx="24" fill="url(#grad)"/>
+        <text x="60" y="75" text-anchor="middle" fill="white" font-family="Arial Black,sans-serif" font-size="48" font-weight="900">M</text>
+      </svg>
+      <h1>MiruroAPI</h1>
+      <div class="subtitle">Decrypted, bypassed, and reverse-engineered anime streaming API</div>
+      <div class="version">v1.1.0 — Full Data, Streaming &amp; Pagination</div>
+    </div>
+
+    <div class="note" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.2); color: #10b981;">
+      <b>16 Endpoints</b> — Powered by AniList GraphQL + Miruro streaming pipe. M3U8 URLs, subtitles, intro/outro timestamps.
+    </div>
+
+    <!-- SEARCH & DISCOVERY -->
+    <div class="section-title">Search &amp; Discovery</div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/search?query={name}</span></div>
+      <div class="desc">Full-text anime search with rich metadata — title, cover, genres, studios, scores, airing status. 20+ fields per result.</div>
+      <a class="try-btn" href="/api/search?query=naruto&per_page=3" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/suggestions?query={name}</span> <span class="badge badge-new">NEW</span></div>
+      <div class="desc">Lightweight autocomplete for dropdowns — id, title, poster, format, status, year. Max 8 results.</div>
+      <a class="try-btn" href="/api/suggestions?query=one+piece" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/filter</span> <span class="badge badge-new">NEW</span></div>
+      <div class="desc">Advanced filter by genre, tag, year, season, format, status, sort. All params optional.</div>
+      <table class="param-table">
+        <tr><th>Param</th><th>Values</th></tr>
+        <tr><td>genre</td><td>Action, Romance, Comedy, Drama, Fantasy, Sci-Fi, etc.</td></tr>
+        <tr><td>tag</td><td>Isekai, Time Skip, Reincarnation, etc.</td></tr>
+        <tr><td>year</td><td>2025, 2024, etc.</td></tr>
+        <tr><td>season</td><td>WINTER · SPRING · SUMMER · FALL</td></tr>
+        <tr><td>format</td><td>TV · MOVIE · OVA · ONA · SPECIAL</td></tr>
+        <tr><td>status</td><td>RELEASING · FINISHED · NOT_YET_RELEASED · CANCELLED</td></tr>
+        <tr><td>sort</td><td>SCORE_DESC · POPULARITY_DESC · TRENDING_DESC · START_DATE_DESC</td></tr>
+      </table>
+      <a class="try-btn" href="/api/filter?genre=Action&format=TV&sort=SCORE_DESC&per_page=3" target="_blank">Try it</a>
+    </div>
+
+    <!-- COLLECTIONS -->
+    <div class="section-title">Collections (All Paginated)</div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/trending</span></div>
+      <div class="desc">Currently trending anime across the community.</div>
+      <a class="try-btn" href="/api/trending?per_page=3" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/popular</span></div>
+      <div class="desc">Most popular anime of all time by total user count.</div>
+      <a class="try-btn" href="/api/popular?per_page=3" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/upcoming</span></div>
+      <div class="desc">Most anticipated anime that haven't aired yet.</div>
+      <a class="try-btn" href="/api/upcoming?per_page=3" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/recent</span></div>
+      <div class="desc">Currently airing / this season's anime.</div>
+      <a class="try-btn" href="/api/recent?per_page=3" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/spotlight</span> <span class="badge badge-new">HOT</span></div>
+      <div class="desc">Top 10 trending + popular anime. Perfect for hero banners.</div>
+      <a class="try-btn" href="/api/spotlight" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/schedule</span></div>
+      <div class="desc">Upcoming episodes with UNIX timestamps and full anime metadata.</div>
+      <a class="try-btn" href="/api/schedule?per_page=3" target="_blank">Try it</a>
+    </div>
+
+    <!-- ANIME DETAILS -->
+    <div class="section-title">Anime Details</div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/info/{anilist_id}</span></div>
+      <div class="desc">Complete anime page — everything AniList has to offer. Characters (25), staff, relations, recommendations, trailer, stats, external links.</div>
+      <a class="try-btn" href="/api/info/21" target="_blank">Try it (One Piece)</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/anime/{id}/characters</span></div>
+      <div class="desc">Paginated character list with Japanese voice actors, images, roles.</div>
+      <a class="try-btn" href="/api/anime/20/characters" target="_blank">Try it (Naruto)</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/anime/{id}/relations</span></div>
+      <div class="desc">Sequels, prequels, side stories, spin-offs, source material.</div>
+      <a class="try-btn" href="/api/anime/20/relations" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint">
+      <div><span class="method">GET</span> <span class="url">/api/anime/{id}/recommendations</span></div>
+      <div class="desc">Community recommendations sorted by highest rating.</div>
+      <a class="try-btn" href="/api/anime/20/recommendations" target="_blank">Try it</a>
+    </div>
+
+    <!-- STREAMING -->
+    <div class="section-title">Streaming (3-Step Flow)</div>
+
+    <div class="note">
+      <b>How streaming works:</b> To get a video URL, follow these 3 steps in order. Each step's output feeds into the next.
+    </div>
+
+    <div class="endpoint" style="border-left-color: #10b981;">
+      <div><span class="step-num">1</span><span class="method">GET</span> <span class="url">/api/episodes/{anilist_id}</span></div>
+      <div class="desc">Get all episodes from multiple providers (kiwi, bee, bonk, ally, moo, etc.) organized by sub/dub. Returns episode IDs for Step 2.</div>
+      <pre class="snippet">{
+  "providers": {
+    "kiwi": { "episodes": { "sub": [{ "id": "watch/kiwi/20/sub/animepahe-1", "number": 1, ... }] } },
+    "bee": { ... },
+    "bonk": { ... }
+  }
+}</pre>
+      <a class="try-btn" href="/api/episodes/20" target="_blank">Try it (Naruto)</a>
+    </div>
+
+    <div class="endpoint" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.05);">
+      <div><span class="step-num">2</span> <span class="url">/api/watch/{provider}/{anilistId}/{category}/{slug}</span> <span class="badge badge-new">RECOMMENDED</span></div>
+      <div class="desc">Take the <b>id</b> from Step 1 and use it as the URL. Returns M3U8 streams, subtitles, intro/outro timestamps.</div>
+      <pre class="snippet">{
+  "streams": [
+    { "url": "https://.../master.m3u8", "type": "hls", "quality": "1080p" }
+  ],
+  "subtitles": [ { "file": "...", "label": "English" } ],
+  "intro": { "start": 0, "end": 90 },
+  "outro": { "start": 1300, "end": 1420 }
+}</pre>
+      <a class="try-btn" href="/api/watch/kiwi/20/sub/animepahe-1" target="_blank">Try it</a>
+    </div>
+
+    <div class="endpoint" style="border-left-color: #818cf8;">
+      <div><span class="step-num">3</span> <span style="color: #818cf8; font-weight: 500;">Play the stream</span></div>
+      <div class="desc">Feed <code>streams[0].url</code> into any HLS player (Video.js, hls.js, VLC, mpv). Use intro/outro timestamps for skip buttons.</div>
+    </div>
+
+    <div class="footer">
+      All collection endpoints return: <code style="color: #a5b4fc;">{ page, perPage, total, hasNextPage, results[] }</code>
+      <br><br>
+      <a href="/api/health">Health</a> · <a href="/openapi.json">OpenAPI Spec</a> · <a href="https://github.com/Shineii86/MiruroAPI" target="_blank">GitHub</a>
     </div>
   </div>
 </body>

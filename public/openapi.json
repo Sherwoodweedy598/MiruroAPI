@@ -1,0 +1,247 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MiruroAPI",
+    "description": "Free RESTful API for anime streaming data. Powered by AniList GraphQL and Miruro streaming providers.",
+    "version": "1.1.0",
+    "contact": {
+      "name": "Shineii86",
+      "url": "https://github.com/Shineii86/MiruroAPI"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://miruroapi-zeta.vercel.app",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Health check",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "API is healthy",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "tags": ["Search & Discovery"],
+        "summary": "Search anime by name",
+        "operationId": "searchAnime",
+        "parameters": [
+          { "name": "query", "in": "query", "required": true, "schema": { "type": "string" }, "description": "Search query" },
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 20, "maximum": 50 } }
+        ],
+        "responses": {
+          "200": { "description": "Search results with pagination" }
+        }
+      }
+    },
+    "/api/suggestions": {
+      "get": {
+        "tags": ["Search & Discovery"],
+        "summary": "Autocomplete suggestions",
+        "operationId": "getSuggestions",
+        "parameters": [
+          { "name": "query", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Lightweight suggestions (max 8)" }
+        }
+      }
+    },
+    "/api/filter": {
+      "get": {
+        "tags": ["Search & Discovery"],
+        "summary": "Advanced filter / browse",
+        "operationId": "filterAnime",
+        "parameters": [
+          { "name": "genre", "in": "query", "schema": { "type": "string" }, "description": "e.g. Action, Romance" },
+          { "name": "tag", "in": "query", "schema": { "type": "string" }, "description": "e.g. Isekai, Time Skip" },
+          { "name": "year", "in": "query", "schema": { "type": "integer" } },
+          { "name": "season", "in": "query", "schema": { "type": "string", "enum": ["WINTER", "SPRING", "SUMMER", "FALL"] } },
+          { "name": "format", "in": "query", "schema": { "type": "string", "enum": ["TV", "MOVIE", "OVA", "ONA", "SPECIAL", "MUSIC"] } },
+          { "name": "status", "in": "query", "schema": { "type": "string", "enum": ["RELEASING", "FINISHED", "NOT_YET_RELEASED", "CANCELLED", "HIATUS"] } },
+          { "name": "sort", "in": "query", "schema": { "type": "string", "enum": ["SCORE_DESC", "POPULARITY_DESC", "TRENDING_DESC", "START_DATE_DESC", "FAVOURITES_DESC", "UPDATED_AT_DESC"], "default": "POPULARITY_DESC" } },
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 20, "maximum": 50 } }
+        ],
+        "responses": {
+          "200": { "description": "Filtered results with pagination" }
+        }
+      }
+    },
+    "/api/trending": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "Trending anime",
+        "operationId": "getTrending",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 20 } }
+        ],
+        "responses": { "200": { "description": "Trending anime list" } }
+      }
+    },
+    "/api/popular": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "Most popular anime",
+        "operationId": "getPopular",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 20 } }
+        ],
+        "responses": { "200": { "description": "Popular anime list" } }
+      }
+    },
+    "/api/upcoming": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "Upcoming anime",
+        "operationId": "getUpcoming",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 20 } }
+        ],
+        "responses": { "200": { "description": "Upcoming anime list" } }
+      }
+    },
+    "/api/recent": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "Recently updated anime",
+        "operationId": "getRecent",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 20 } }
+        ],
+        "responses": { "200": { "description": "Recent anime list" } }
+      }
+    },
+    "/api/spotlight": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "Spotlight / featured anime",
+        "operationId": "getSpotlight",
+        "responses": { "200": { "description": "Top 10 trending + popular" } }
+      }
+    },
+    "/api/schedule": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "Airing schedule",
+        "operationId": "getSchedule",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 20 } }
+        ],
+        "responses": { "200": { "description": "Upcoming episodes with timestamps" } }
+      }
+    },
+    "/api/info/{id}": {
+      "get": {
+        "tags": ["Anime Details"],
+        "summary": "Full anime info",
+        "operationId": "getAnimeInfo",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "description": "AniList anime ID" }
+        ],
+        "responses": { "200": { "description": "Complete anime metadata, characters, relations, recommendations" } }
+      }
+    },
+    "/api/anime/{id}/characters": {
+      "get": {
+        "tags": ["Anime Details"],
+        "summary": "Characters with voice actors",
+        "operationId": "getCharacters",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 25 } }
+        ],
+        "responses": { "200": { "description": "Paginated character list" } }
+      }
+    },
+    "/api/anime/{id}/relations": {
+      "get": {
+        "tags": ["Anime Details"],
+        "summary": "Related anime",
+        "operationId": "getRelations",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": { "200": { "description": "Sequels, prequels, side stories, etc." } }
+      }
+    },
+    "/api/anime/{id}/recommendations": {
+      "get": {
+        "tags": ["Anime Details"],
+        "summary": "Community recommendations",
+        "operationId": "getRecommendations",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "per_page", "in": "query", "schema": { "type": "integer", "default": 10 } }
+        ],
+        "responses": { "200": { "description": "Recommended anime sorted by rating" } }
+      }
+    },
+    "/api/episodes/{id}": {
+      "get": {
+        "tags": ["Streaming"],
+        "summary": "Episode list from all providers",
+        "operationId": "getEpisodes",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "description": "AniList anime ID" }
+        ],
+        "responses": { "200": { "description": "Episodes organized by provider and audio type (sub/dub)" } }
+      }
+    },
+    "/api/sources": {
+      "get": {
+        "tags": ["Streaming"],
+        "summary": "Streaming sources (detailed)",
+        "operationId": "getSources",
+        "parameters": [
+          { "name": "episodeId", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "provider", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "anilistId", "in": "query", "required": true, "schema": { "type": "integer" } },
+          { "name": "category", "in": "query", "schema": { "type": "string", "enum": ["sub", "dub"], "default": "sub" } }
+        ],
+        "responses": { "200": { "description": "M3U8 streams, subtitles, intro/outro timestamps" } }
+      }
+    },
+    "/api/watch/{provider}/{anilistId}/{category}/{slug}": {
+      "get": {
+        "tags": ["Streaming"],
+        "summary": "Streaming sources (simple slug-based)",
+        "operationId": "getWatchSources",
+        "parameters": [
+          { "name": "provider", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "anilistId", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "category", "in": "path", "required": true, "schema": { "type": "string", "enum": ["sub", "dub"] } },
+          { "name": "slug", "in": "path", "required": true, "schema": { "type": "string" }, "description": "e.g. animepahe-1" }
+        ],
+        "responses": { "200": { "description": "M3U8 streams, subtitles, intro/outro timestamps" } }
+      }
+    }
+  },
+  "tags": [
+    { "name": "System", "description": "Health & status" },
+    { "name": "Search & Discovery", "description": "Search, suggestions, and advanced filtering" },
+    { "name": "Collections", "description": "Trending, popular, upcoming, recent, spotlight, schedule" },
+    { "name": "Anime Details", "description": "Full anime info, characters, relations, recommendations" },
+    { "name": "Streaming", "description": "Episode lists and M3U8 streaming sources" }
+  ]
+}
