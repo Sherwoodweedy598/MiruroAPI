@@ -1,6 +1,6 @@
 <div align="center">
   
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=MiruroAPI&fontAlignY=30&fontSize=90&desc=Free%20Anime%20Streaming%20API&descSize=30" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=𝙈𝙞𝙧𝙪𝙧𝙤𝘼𝙋𝙄&fontAlignY=30&fontSize=100&desc=𝖠%20𝖢𝗈𝗆𝗉𝗅𝖾𝗍𝖾%20𝖱𝖤𝖲𝖳𝖿𝗎𝗅%20𝖠𝖯𝖨%20𝖥𝗈𝗋%20𝖠𝗇𝗂𝗆𝖾%20𝖲𝗍𝗋𝖾𝖺𝗆𝗂𝗇𝗀&descSize=25" />
 
 </div>
 
@@ -41,8 +41,7 @@
 
 ---
 
-> ## ⚠️ Disclaimer
->
+> [!WARNING]
 > 1. This `API` does not store any files — it only links to media hosted on 3rd party services.
 > 2. This `API` is explicitly made for **educational purposes only** and not for commercial usage. This repo will not be responsible for any misuse of it.
 > 3. All anime data, images, and content belong to their respective owners (AniList, Miruro). This project is not affiliated with miruro.tv.
@@ -1576,8 +1575,8 @@ git push origin feature/amazing-feature
 - ✅ Update CHANGELOG.md with your changes
 - ✅ Keep PRs focused — one feature or fix per PR
 - ✅ Add JSDoc comments for new functions
-- ❌ Don't commit `node_modules` or cache files
-- ❌ Don't add unrelated changes to a single PR
+- ❎ Don't commit `node_modules` or cache files
+- ❎ Don't add unrelated changes to a single PR
 
 ---
 
@@ -1660,5 +1659,5 @@ Free to use, modify, and distribute — see the [LICENSE](LICENSE) file for deta
 <p align="center">
   <b>Made With ❤️ For The Anime Community</b>
   <br/><br/>
-  <sub>© 2026 Shineii86. All Rights Reserved.</sub>
+  <sub>© [Shinei Nouzen](https://t.me/Shineii86). All Rights Reserved.</sub>
 </p>
