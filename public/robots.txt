@@ -1,6 +1,0 @@
-# MiruroAPI — https://mirurotvapi.vercel.app
-User-agent: *
-Allow: /
-Disallow: /api
-
-Sitemap: https://mirurotvapi.vercel.app/sitemap.xml
